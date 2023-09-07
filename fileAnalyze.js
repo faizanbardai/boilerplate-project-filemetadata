@@ -7,7 +7,9 @@ const fileAnalyze = (req, res) => {
   const size = file.size;
 
   const dir = "./uploads";
-  fs.rmSync(dir, { recursive: true, force: true });
+  if (fs.existsSync(dir)) {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
   res.send({ name, type, size });
 };
 
