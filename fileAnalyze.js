@@ -5,11 +5,7 @@ const fileAnalyze = (req, res) => {
   const name = file.originalname;
   const type = file.mimetype;
   const size = file.size;
-
-  const dir = "./uploads";
-  if (fs.existsSync(dir)) {
-    fs.rmSync(dir, { recursive: true, force: true });
-  }
+  fs.unlinkSync(file.path);
   res.send({ name, type, size });
 };
 
